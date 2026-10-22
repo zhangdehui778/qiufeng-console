@@ -20,6 +20,7 @@ jobs:
       - name: Build with Gradle
         run: |
           echo "sdk.dir=$ANDROID_HOME" > local.properties
+          printf 'android.useAndroidX=true\norg.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8\n' > gradle.properties
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
           set +e
           gradle assembleDebug --no-daemon --stacktrace --console=plain > build.log 2>&1
